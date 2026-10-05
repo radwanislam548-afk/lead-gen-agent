@@ -1,0 +1,36 @@
+name = "lead-gen-agent"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# D1 database (lead store). Create once: wrangler d1 create leadgen
+# then paste the database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "leadgen"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# KV namespace (counters, templates, extension token cache)
+[[kv_namespaces]]
+binding = "CONFIG"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[triggers]
+crons = [
+  "0 6 * * *",   # collector: daily lead collection
+  "0 7 * * *",   # personalizer: AI personalization
+  "0 9 * * *",   # sender: daily batch send
+  "0 10 * * *",  # followup: due follow-ups
+  "0 * * * *",   # reply-watcher: hourly bounce/reply check
+]
+
+# Secrets (set via: wrangler secret put <NAME>)
+# RESEND_API_KEY, MANIFEST_API_KEY, APIFY_API_KEY, BRIGHTDATA_API_KEY,
+# SERPAPI_KEY, YT_API_KEY, EXTENSION_TOKEN, DASHBOARD_USER, DASHBOARD_PASS
+
+[vars]
+MANIFEST_BASE_URL = "https://app.manifest.build/v1"
+FROM_NAME = "Radwan"
+FROM_EMAIL = "radwan@mail.jepystudio.com"
+DAILY_SEND_CAP = "20"
+ORIGIN = "https://lead-gen-agent.workers.dev"  # update after first deploy

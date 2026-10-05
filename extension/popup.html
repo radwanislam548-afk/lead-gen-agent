@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+<style>
+body{width:300px;font-family:system-ui,sans-serif;padding:14px;margin:0;background:#0f1115;color:#e8e8e8}
+h2{font-size:15px;margin:0 0 10px}
+label{font-size:12px;color:#999;display:block;margin-top:8px}
+input{width:100%;box-sizing:border-box;padding:7px;border-radius:6px;border:1px solid #333;background:#1a1e26;color:#e8e8e8;margin-top:4px}
+button{width:100%;padding:10px;border:none;border-radius:8px;margin-top:10px;cursor:pointer;font-size:14px}
+#scrape{background:#166534;color:#fff;font-weight:700}
+#save{background:#2a3040;color:#e8e8e8}
+#status{margin-top:10px;font-size:13px;min-height:20px}
+.ok{color:#4ade80}.err{color:#f87171}
+details{margin-top:8px;font-size:12px}summary{cursor:pointer;color:#999}
+</style>
+</head>
+<body>
+<h2>🎯 Lead Scraper</h2>
+<button id="scrape">Scrape this page</button>
+<div id="status"></div>
+<details>
+<summary>Settings</summary>
+<label>Worker URL (https://…workers.dev)</label>
+<input id="workerUrl" placeholder="https://lead-gen-agent.workers.dev">
+<label>Extension token</label>
+<input id="token" type="password" placeholder="EXTENSION_TOKEN">
+<button id="save">Save settings</button>
+</details>
+<script src="popup.js"></script>
+</body>
+</html>
